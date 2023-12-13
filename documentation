@@ -1,0 +1,172 @@
+Vendor Management System
+
+**Create a new Vendor
+endpoint : http://127.0.0.1:8000/api/vendors/
+method : POST
+request body : {
+  "username": "admin",
+  "password": "123456",
+  "name": "Pranali",
+  "contact_details": "pranali@gamil.com",
+  "address": "Belgaum",
+  "vendor_code": "V1"
+}
+
+Response :  Upon a successful request, the server responds with a status code of 201 and an empty JSON object containing the newly added vendor's details
+___________________________________________________________________________________________________
+
+** Get Vendors
+endpoint : http://127.0.0.1:8000/api/vendors/
+method : GET
+
+Response :  Upon a successful request, the server responds with a status code of 200 and an array of vendor objects, each containing the following fields:
+  -name - The name of the vendor.
+  -contact_details - Contact details of the vendor.
+  -address - Address of the vendor.
+  -vendor_code - Unique code assigned to the vendor.
+_______________________________________________________________________________________________________
+
+** Get Vendor Details
+endpoint : http://127.0.0.1:8000/api/vendors/10/
+method : GET
+This endpoint makes an HTTP GET request to retrieve details of a specific vendor. The request should include the vendor's ID in the URL.
+
+Response :  Upon a successful request, the server will respond with a status code of 200 and a JSON object containing the vendor's details including 'name', 'contact_details', 'address', and 'vendor_code'.
+
+Example : 
+{
+    "name": "Pranali B",
+    "contact_details": "7760836763",
+    "address": "Belgaum",
+    "vendor_code": "V1"
+}
+__________________________________________________________________________________________________________
+
+**Update Vendor
+endpoint : http://127.0.0.1:8000/api/vendors/10/
+method: PUT/PATCH
+
+Response : Upon a successful request, the server will respond with a status code of 200 and a JSON object containing the vendor's details including 'name', 'contact_details', 'address', and 'vendor_code'.
+
+______________________________________________________________________________________________________________
+
+** Delete vendor
+endpoint : http://127.0.0.1:8000/api/vendors/delete/12/
+method : DELETE
+
+This endpoint is used to delete a vendor with the specified ID.
+
+_______________________________________________________________________________________________________________
+
+** Create Purchase Order
+endpoint : http://127.0.0.1:8000/api/purchase-orders/
+method : POST
+This endpoint allows you to add a new purchase order.
+
+Request Body : 
+ -username (text): The username associated with the purchase order.
+ -password (text): The password for the user.
+ -po_number (text): The purchase order number.
+ -vendor (text): The vendor for the purchase order.
+ -delivery_date (text): The delivery date for the purchase order.
+ -items (text): The items included in the purchase order.
+
+________________________________________________________________________________________________________________
+
+** Purchase Order List
+endpoint : http://127.0.0.1:8000/api/purchase-orders/
+method : GET
+This API endpoint allows you to retrieve a list of purchase orders.
+
+Response : Response
+Upon a successful request, the API will return a status code of 200 along with an array of purchase orders. Each purchase order object in the array includes the following attributes:
+
+ -po_number (string): The purchase order number.
+ -vendor (integer): The ID of the vendor associated with the purchase order.
+ -order_date (string): The date of the order.
+ -delivery_date (string): The expected delivery date.
+ -items (object): An object containing details of the items in the purchase order, including the product name and quantity.
+ -quantity (integer): The total quantity of items in the purchase order.
+ -status (string): The status of the purchase order.
+ -quality_rating (integer): The quality rating of the purchase order.
+ -issue_date (string): The date of any issues related to the purchase order.
+ -acknowledgment_date (string): The acknowledgment date of the purchase order.
+
+________________________________________________________________________________________________________________________
+
+
+** Get Purchase Order Details
+
+endpoint : http://127.0.0.1:8000/api/purchase-orders/12/
+method : GET
+This endpoint retrieves the details of a specific purchase order
+
+Response : 
+{
+    "po_number": "25",
+    "vendor": 10,
+    "order_date": "2023-12-12T16:27:33.558368+05:30",
+    "delivery_date": "2023-12-15T16:27:00+05:30",
+    "items": {
+        "product": "Chair"
+    },
+    "quantity": 3,
+    "status": "Pending",
+    "quality_rating": 3.0,
+    "issue_date": "2023-12-12T16:27:33.558555+05:30",
+    "acknowledgment_date": null
+}
+
+___________________________________________________________________________________________________________________
+
+** Update Purchase Order
+endpoint : http://127.0.0.1:8000/api/purchase-orders/12/
+method : PUT
+This endpoint allows you to update a specific purchase order by sending an HTTP PUT request to the given URL.
+
+Request Body 
+    -username (text): The username for authentication.
+    -password (text): The password for authentication.
+    -po_number (text): The purchase order number.
+    -vendor (text): The vendor for the purchase order.
+    -delivery_date (text): The delivery date for the purchase order.
+    -items (text): The items included in the purchase order.
+
+Response : Upon a successful update, the endpoint returns a status code of 200 along with the updated purchase order details in the response body.
+    -po_number (string): The updated purchase order number.
+    -vendor (integer): The updated vendor ID.
+    -order_date (string): The date of the purchase order.
+    -delivery_date (string): The updated delivery date for the purchase order.
+    -items (object): The updated items included in the purchase order, along with their quantities.
+    -quantity (integer): The total quantity of items in the purchase order.
+    -status (string): The status of the purchase order.
+    -quality_rating (null): The quality rating of the purchase order.
+    -issue_date (string): The date of any issues related to the purchase order.
+    -acknowledgment_date (null): The acknowledgment date for the purchase order.
+
+______________________________________________________________________________________________________________________
+
+** Delete Purchase Order
+endpoint : http://127.0.0.1:8000/api/purchase-orders/delete/6/
+method : DELETE
+This endpoint makes an HTTP DELETE request to delete a specific purchase order
+
+Response : Upon successful deletion, the server returns a status code of 204 with no content in the response body.
+
+_______________________________________________________________________________________________________________________
+
+** Get Vendor Performance
+
+endpoint :  http://127.0.0.1:8000/api/vendors/5/performance/
+method : GET
+
+Response  : Status: 200 OK
+
+________________________________________________________________________________________________________________________________
+
+** Vendor acknowledge
+endpoint : http://127.0.0.1:8000/api/purchase-orders/4/acknowledge/
+method: PUT
+This endpoint is used to acknowledge a purchase order by sending an HTTP PUT request to the specified URL.
+
+Response : Upon successful execution, the server responds with a status code of 200 and a JSON object containing the 'acknowledgment_date' field.
